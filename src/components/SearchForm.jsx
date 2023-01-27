@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 
 
 function SearchForm() {
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("");
+    const [error, setError] = useState("");
+
+    useEffect(() => {
+        setError("")
+    }, [latitude, longitude])
 
     const handleNearMeClick = () => {
+        setError("");
         navigator.geolocation.getCurrentPosition(
             position => {
                 setLatitude(position.coords.latitude);
@@ -18,11 +24,29 @@ function SearchForm() {
         );
     };
 
-
-    const handleSearchClick = () => {
-
+    const validateCoordinates = () => {
+        if (!isFinite(latitude) || latitude <= -90 || latitude >= 90 || !latitude) {
+            setError("Invalid coordinates. Please enter a valid latitude and longitude.");
+        }
+        else if (!isFinite(longitude) || longitude <= -180 || longitude >= 180 || !longitude) {
+            setError("Invalid coordinates. Please enter a valid latitude and longitude.");
+        }
     }
 
+
+    const handleSearchClick = () => {
+        validateCoordinates();
+    }
+
+    const handleLatitudeChange = (e) => {
+        setError("")
+        setLatitude(e.target.value)
+    }
+
+    const handleLongitudeChange = (e) => {
+        setError("")
+        setLongitude(e.target.value)
+    }
     return (
         <div className="form-container">
             <form className="form">
@@ -32,7 +56,7 @@ function SearchForm() {
                         className="latitude-input"
                         type="text"
                         value={latitude}
-                        onChange={e => setLatitude(e.target.value)}
+                        onChange={handleLatitudeChange}
                     />
                 </label>
                 <br />
@@ -42,7 +66,7 @@ function SearchForm() {
                         className="longitude-input"
                         type="text"
                         value={longitude}
-                        onChange={e => setLongitude(e.target.value)}
+                        onChange={handleLongitudeChange}
                     />
                 </label>
             </form>
@@ -52,6 +76,8 @@ function SearchForm() {
             <button className="search-button" type="button" onClick={handleSearchClick}>
                 Search
             </button>
+            <br />
+            {error && <p className="error-message"> {error}</p>}
         </div>
     );
 }
