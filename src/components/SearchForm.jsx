@@ -19,7 +19,8 @@ function SearchForm() {
                 setLongitude(position.coords.longitude);
             },
             error => {
-                console.log("Error getting location: ", error);
+                console.log(error)
+                setError("Error getting location. Please ensure that location services are enabled on your device and try again.");
             }
         );
     };
