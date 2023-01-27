@@ -6,6 +6,10 @@ function SearchForm() {
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("");
 
+    const handleSearchClick = () => {
+
+    }
+
     return (
         <div className="form-container">
             <form className="form">
@@ -29,6 +33,12 @@ function SearchForm() {
                     />
                 </label>
             </form>
+            <button className="near-me-button" type="button">
+                Near Me
+            </button>
+            <button className="search-button" type="button">
+                Search
+            </button>
         </div>
     );
 }
