@@ -19,6 +19,10 @@ body {
   text-align: left;
 }
 
+h1 {
+  align-self: center;
+}
+
 
 .location {
   background-color: #fff;
