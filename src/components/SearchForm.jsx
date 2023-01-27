@@ -1,10 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 
 
 function SearchForm() {
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("");
+
+    const handleNearMeClick = () => {
+        navigator.geolocation.getCurrentPosition(
+            position => {
+                setLatitude(position.coords.latitude);
+                setLongitude(position.coords.longitude);
+            },
+            error => {
+                console.log("Error getting location: ", error);
+            }
+        );
+    };
+
 
     const handleSearchClick = () => {
 
@@ -33,10 +46,10 @@ function SearchForm() {
                     />
                 </label>
             </form>
-            <button className="near-me-button" type="button">
+            <button className="near-me-button" type="button" onClick={handleNearMeClick}  >
                 Near Me
             </button>
-            <button className="search-button" type="button">
+            <button className="search-button" type="button" onClick={handleSearchClick}>
                 Search
             </button>
         </div>
