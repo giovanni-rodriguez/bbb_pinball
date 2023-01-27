@@ -1,12 +1,10 @@
 import './App.css';
-import SearchForm from './components/SearchForm.jsx';
+import PinballLocationFinder from './components/PinballLocationFinder.jsx';
 
 function App() {
   return (
     <div className="App">
-      <div>
-        <SearchForm />
-      </div>
+      <PinballLocationFinder />
     </div>
   );
 }
