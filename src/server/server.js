@@ -8,10 +8,12 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/api/locations', (req, res) => {
-    const url = `https://pinballmap.com/api/v1/locations/closest_by_lat_lon.json?lat=${req.query.lat}&lon=${req.query.lon}`;
+    console.log('query', req.query)
+    const url = `https://pinballmap.com/api/v1/locations/closest_by_lat_lon.json?lat=${req.query.lat}&lon=${req.query.lon}&send_all_within_distance=${req.query.send_all_within_distance}`;
     fetch(url)
         .then((res) => res.json())
         .then((data) => {
+            console.log(data)
             res.json(data);
         })
         .catch((err) => {
