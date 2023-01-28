@@ -21,4 +21,5 @@ const SearchResults = ({ locations }) => {
     )
 }
 
+
 export default SearchResults

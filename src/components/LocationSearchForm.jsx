@@ -47,7 +47,7 @@ function LocationSearchForm() {
             const requestionOptions = {
                 method: "GET",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
             };
             fetch(url, requestionOptions)
@@ -68,6 +68,9 @@ function LocationSearchForm() {
                     console.log(err)
                     console.log("error getting pinball locations from api")
                 })
+        }
+        else {
+            setError("Invalid Coordinates: Please enter a valid latitude and longitude.");
         }
     }
 

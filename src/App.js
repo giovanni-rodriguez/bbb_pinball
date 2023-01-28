@@ -3,7 +3,7 @@ import LocationSearchForm from './components/LocationSearchForm.jsx';
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <h1> Pinball Finder</h1>
       <div className="form-container">
         <LocationSearchForm />
