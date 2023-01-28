@@ -41,9 +41,11 @@ function LocationSearchForm() {
     }
 
     const handleSearchClick = () => {
+        setLocations([]);
         const validCoordinates = coordinateValidation(latitude, longitude);
         if (validCoordinates) {
-            const url = `http://localhost:8080/api/locations?lat=${latitude}&lon=${longitude}`;
+            setShowResults(true)
+            const url = `http://localhost:8080/api/locations?lat=${latitude}&lon=${longitude}&send_all_within_distance=${100}`;
             const requestionOptions = {
                 method: "GET",
                 headers: {
@@ -53,15 +55,12 @@ function LocationSearchForm() {
             fetch(url, requestionOptions)
                 .then((res) => res.json())
                 .then((data) => {
-                    const allLocations = [];
-                    for (let key in data) {
-                        allLocations.push(data[key]);
-                    }
-                    if (allLocations[0] === "No locations within 50 miles.") {
+                    if (data["errors"]) {
                         setError("No locations within 50 miles.");
+                        setLocations([]);
+                        setShowResults(false);
                     } else {
-                        setShowResults(true)
-                        setLocations(allLocations);
+                        setLocations(data["locations"]);
                     }
                 })
                 .catch((err) => {
@@ -82,6 +81,7 @@ function LocationSearchForm() {
                     className="latitude-input"
                     type="text"
                     value={latitude}
+                    placeholder={"Enter latitude"}
                     onChange={handleLatitudeChange} />
             </label>
             <br />
@@ -91,6 +91,7 @@ function LocationSearchForm() {
                     className="longitude-input"
                     type="text"
                     value={longitude}
+                    placeholder={"Enter longitude"}
                     onChange={handleLongitudeChange} />
             </label>
             <br />
@@ -100,7 +101,7 @@ function LocationSearchForm() {
             </button>
             <br />
             {error && <p className="error-message"> {error}</p>}
-            {showResults && <div className=".search-results"> <SearchResults locations={locations} /> </div>}
+            {showResults && <div className="search-results"> <SearchResults locations={locations} /> </div>}
         </form>
     )
 }
