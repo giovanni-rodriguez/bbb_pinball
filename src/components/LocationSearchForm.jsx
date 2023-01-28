@@ -9,10 +9,11 @@ function LocationSearchForm() {
     const [locations, setLocations] = useState([]);
     const [showResults, setShowResults] = useState(false);
     const [error, setError] = useState("");
+    const [maxDistance, setMaxDistance] = useState("50");
 
     useEffect(() => {
         setShowResults(false);
-    }, [latitude, longitude])
+    }, [latitude, longitude, maxDistance])
 
 
     const handleLatitudeChange = (e) => {
@@ -42,10 +43,11 @@ function LocationSearchForm() {
 
     const handleSearchClick = () => {
         setLocations([]);
+        console.log('maxdistance', maxDistance)
         const validCoordinates = coordinateValidation(latitude, longitude);
         if (validCoordinates) {
             setShowResults(true)
-            const url = `http://localhost:8080/api/locations?lat=${latitude}&lon=${longitude}&send_all_within_distance=${100}`;
+            const url = `http://localhost:8080/api/locations?lat=${latitude}&lon=${longitude}&send_all_within_distance=${"true"}&max_distance=${maxDistance}`;
             const requestionOptions = {
                 method: "GET",
                 headers: {
@@ -73,6 +75,12 @@ function LocationSearchForm() {
         }
     }
 
+    const handleMaxDistanceChange = (e) => {
+        setError("")
+        setMaxDistance(e.target.value);
+        return;
+    }
+
     return (
         <form className="form">
             <label className="latitude-label">
@@ -96,6 +104,9 @@ function LocationSearchForm() {
             </label>
             <br />
             <NearMeButton handleGeoLocationError={handleGeoLocationError} handleLatitudeChange={handleLatitudeChange} handleLongitudeChange={handleLongitudeChange} />
+            <br />
+            <label className="max-distance-label">Maxmim Distance(miles):
+                <input className="max-distance-input" type="text" value={maxDistance} placeholder={"Enter maximum distance"} onChange={handleMaxDistanceChange} /></label>
             <button className="search-button" type="button" onClick={handleSearchClick}>
                 Search
             </button>
