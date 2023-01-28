@@ -10,13 +10,48 @@ body {
   font-size: 16px;
   line-height: 1.6;
   text-align: center;
+  overflow-y: hidden;
 }
 
 .App {
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 1rem 2rem;
   text-align: left;
+}
+
+root {
+  overflow: hidden;
+}
+
+h1 {
+  align-self: center;
+}
+
+button {
+  margin: 10px 5px;
+  padding: 10px 10px;
+  border: 2px solid #4CAF50;
+  border-radius: 20px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+
+}
+
+
+button:hover {
+  background-color: #3E8E41;
+  cursor: pointer;
+}
+
+.latitude-input {
+  margin-left: 23px;
+}
+
+.longitude-input {
+  margin-left: 10px;
 }
 
 
@@ -27,6 +62,8 @@ body {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   padding: 2rem;
   margin-bottom: 2rem;
+  height: 275px;
+  overflow: hidden;
 }
 
 .location-name {
@@ -45,24 +82,45 @@ body {
 .machine-name-label {
   font-size: 1.2rem;
   font-weight: bold;
-  margin-top: 1rem;
+  margin-top: .2rem;
   margin-bottom: 0.5rem;
 }
 
 .machine-name {
-  font-size: 1.2rem;
+  font-size: 15px;
   margin-left: 1rem;
   margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  max-height: 65px;
+
 }
 
 .machine-name p {
+  margin-bottom: 0.2rem;
+}
+
+.search-results {
+  overflow-y: scroll;
+  max-height: 65vh;
+}
+
+.max-distance-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 1rem;
   margin-bottom: 0.5rem;
 }
 
+.max-distance-input {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-left: 1rem;
+}
 
-.search-results {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
+.error-message {
+  color: red;
 }

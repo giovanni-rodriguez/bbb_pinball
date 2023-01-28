@@ -1,4 +1,4 @@
-function NearMeButton({ handleLatitudeChange, handleLongitudeChange, handleGeoLocationError }) {
+const NearMeButton = ({ handleLatitudeChange, handleLongitudeChange, handleGeoLocationError }) => {
     const handleNearMeClick = () => {
         navigator.geolocation.getCurrentPosition(
             position => {
