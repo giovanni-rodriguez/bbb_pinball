@@ -105,7 +105,7 @@ function LocationSearchForm() {
             <br />
             <NearMeButton handleGeoLocationError={handleGeoLocationError} handleLatitudeChange={handleLatitudeChange} handleLongitudeChange={handleLongitudeChange} />
             <br />
-            <label className="max-distance-label">Maxmim Distance(miles):
+            <label className="max-distance-label">Maximum Distance(miles):
                 <input className="max-distance-input" type="text" value={maxDistance} placeholder={"Enter maximum distance"} onChange={handleMaxDistanceChange} /></label>
             <button className="search-button" type="button" onClick={handleSearchClick}>
                 Search
