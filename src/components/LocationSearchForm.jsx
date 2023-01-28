@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import NearMeButton from "./NearMeButton";
 import SearchResults from "./SearchResults";
 import coordinateValidation from "../utils/validation.js";
+import MaxDistance from "./MaxDistance";
 
-function LocationSearchForm() {
+const cache = {};
+
+
+const LocationSearchForm = () => {
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("")
     const [locations, setLocations] = useState([]);
@@ -14,7 +18,6 @@ function LocationSearchForm() {
     useEffect(() => {
         setShowResults(false);
     }, [latitude, longitude, maxDistance])
-
 
     const handleLatitudeChange = (e) => {
         setError("")
@@ -43,9 +46,15 @@ function LocationSearchForm() {
 
     const handleSearchClick = () => {
         setLocations([]);
-        console.log('maxdistance', maxDistance)
         const validCoordinates = coordinateValidation(latitude, longitude);
-        if (validCoordinates) {
+        const validMaxDistance = maxDistance <= 1000 && maxDistance >= 1;
+        if (validCoordinates && validMaxDistance) {
+            const cacheKey = `${latitude},${longitude},${maxDistance}`;
+            if (cache[cacheKey]) {
+                setLocations(cache[cacheKey]);
+                setShowResults(true);
+                return;
+            }
             setShowResults(true)
             const url = `http://localhost:8080/api/locations?lat=${latitude}&lon=${longitude}&send_all_within_distance=${"true"}&max_distance=${maxDistance}`;
             const requestionOptions = {
@@ -62,6 +71,7 @@ function LocationSearchForm() {
                         setLocations([]);
                         setShowResults(false);
                     } else {
+                        cache[cacheKey] = data["locations"];
                         setLocations(data["locations"]);
                     }
                 })
@@ -71,13 +81,18 @@ function LocationSearchForm() {
                 })
         }
         else {
-            setError("Invalid Coordinates: Please enter a valid latitude and longitude.");
+            if (maxDistance > 1000 || maxDistance < 1 || isNaN(maxDistance)) {
+                setError("Please enter maximum distance between 1 and 1000")
+            }
+            else {
+                setError("Invalid Coordinates: Please enter a valid latitude and longitude.");
+            }
         }
     }
 
-    const handleMaxDistanceChange = (e) => {
+    const handleMaxDistanceChange = (distance) => {
         setError("")
-        setMaxDistance(e.target.value);
+        setMaxDistance(distance);
         return;
     }
 
@@ -105,8 +120,7 @@ function LocationSearchForm() {
             <br />
             <NearMeButton handleGeoLocationError={handleGeoLocationError} handleLatitudeChange={handleLatitudeChange} handleLongitudeChange={handleLongitudeChange} />
             <br />
-            <label className="max-distance-label">Maximum Distance(miles):
-                <input className="max-distance-input" type="text" value={maxDistance} placeholder={"Enter maximum distance"} onChange={handleMaxDistanceChange} /></label>
+            <MaxDistance handleMaxDistanceChange={handleMaxDistanceChange} />
             <button className="search-button" type="button" onClick={handleSearchClick}>
                 Search
             </button>

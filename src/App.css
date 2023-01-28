@@ -10,13 +10,18 @@ body {
   font-size: 16px;
   line-height: 1.6;
   text-align: center;
+  overflow-y: hidden;
 }
 
 .App {
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 1rem 2rem;
   text-align: left;
+}
+
+root {
+  overflow: hidden;
 }
 
 h1 {
@@ -86,7 +91,6 @@ button:hover {
   margin-left: 1rem;
   margin-bottom: 1rem;
   display: flex;
-  display: flex;
   flex-direction: column;
   overflow-y: scroll;
   max-height: 65px;
@@ -115,4 +119,8 @@ button:hover {
   border-radius: 8px;
   border: 1px solid #ccc;
   margin-left: 1rem;
+}
+
+.error-message {
+  color: red;
 }
