@@ -12,7 +12,7 @@ const NearMeButton = ({ handleLatitudeChange, handleLongitudeChange, handleGeoLo
         );
     };
     return (
-        <button type="button" onClick={handleNearMeClick}> Near Me</button>
+        <button type="button" onClick={handleNearMeClick}> Near me</button>
     )
 }
 
