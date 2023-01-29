@@ -62,7 +62,7 @@ button:hover {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   padding: 2rem;
   margin-bottom: 2rem;
-  height: 275px;
+  height: 300px;
   overflow: hidden;
 }
 
@@ -89,11 +89,11 @@ button:hover {
 .machine-name {
   font-size: 15px;
   margin-left: 1rem;
-  margin-bottom: 1rem;
+  padding-bottom: 2rem;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  max-height: 65px;
+  max-height: 75px;
 
 }
 
