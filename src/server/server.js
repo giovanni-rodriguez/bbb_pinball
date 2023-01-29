@@ -13,7 +13,6 @@ app.get('/api/locations', (req, res) => {
     fetch(url)
         .then((res) => res.json())
         .then((data) => {
-            // console.log(data)
             res.json(data);
         })
         .catch((err) => {
