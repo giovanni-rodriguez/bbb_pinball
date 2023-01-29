@@ -3,6 +3,8 @@ import NearMeButton from "./NearMeButton";
 import SearchResults from "./SearchResults";
 import coordinateValidation from "../utils/validation.js";
 import MaxDistance from "./MaxDistance";
+import sortLocations from "../utils/sorting";
+import Sort from "./Sort";
 
 const cache = {};
 
@@ -14,29 +16,24 @@ const LocationSearchForm = () => {
     const [showResults, setShowResults] = useState(false);
     const [error, setError] = useState("");
     const [maxDistance, setMaxDistance] = useState("50");
+    const [sortBy, setSortBy] = useState("Distance");
+    const [sortOrder, setSortOrder] = useState("Ascending");
 
     useEffect(() => {
         setShowResults(false);
     }, [latitude, longitude, maxDistance])
 
+    useEffect(() => {
+    }, [locations]);
+
     const handleLatitudeChange = (e) => {
         setError("")
-        if (!e.target) {
-            setLatitude(e);
-        }
-        else {
-            setLatitude(e.target.value)
-        }
+        setLatitude(!e.target ? e : e.target.value);
         return;
     }
     const handleLongitudeChange = (e) => {
         setError("")
-        if (!e.target) {
-            setLongitude(e);
-        }
-        else {
-            setLongitude(e.target.value)
-        }
+        setLongitude(!e.target ? e : e.target.value);
         return;
     }
     const handleGeoLocationError = () => {
@@ -51,7 +48,8 @@ const LocationSearchForm = () => {
         if (validCoordinates && validMaxDistance) {
             const cacheKey = `${latitude},${longitude},${maxDistance}`;
             if (cache[cacheKey]) {
-                setLocations(cache[cacheKey]);
+                const sortedLocations = sortLocations(cache[cacheKey], sortBy, sortOrder);
+                setLocations(sortedLocations);
                 setShowResults(true);
                 return;
             }
@@ -72,7 +70,8 @@ const LocationSearchForm = () => {
                         setShowResults(false);
                     } else {
                         cache[cacheKey] = data["locations"];
-                        setLocations(data["locations"]);
+                        const sortedLocations = sortLocations(data["locations"], sortBy, sortOrder);
+                        setLocations(sortedLocations);
                     }
                 })
                 .catch((err) => {
@@ -81,11 +80,13 @@ const LocationSearchForm = () => {
                 })
         }
         else {
-            if (maxDistance > 1000 || maxDistance < 1 || isNaN(maxDistance)) {
-                setError("Please enter maximum distance between 1 and 1000")
+            if (!validMaxDistance) {
+                setError("Please enter maximum distance between 1 and 1000");
+                return;
             }
             else {
                 setError("Invalid Coordinates: Please enter a valid latitude and longitude.");
+                return;
             }
         }
     }
@@ -94,6 +95,24 @@ const LocationSearchForm = () => {
         setError("")
         setMaxDistance(distance);
         return;
+    }
+
+    const handleSortByChange = (e) => {
+        const sortBySelection = e.target.value;
+        setSortBy(sortBySelection)
+        if (locations.length > 1) {
+            const newLocations = sortLocations(locations, sortBySelection, sortOrder);
+            setLocations(newLocations);
+        }
+    }
+
+    const handleSortOrderChange = (e) => {
+        const sortOrderSelection = e.target.value;
+        setSortOrder(sortOrderSelection)
+        if (locations.length > 1) {
+            const newLocations = sortLocations(locations, sortBy, sortOrderSelection);
+            setLocations(newLocations);
+        }
     }
 
     return (
@@ -124,6 +143,7 @@ const LocationSearchForm = () => {
             <button className="search-button" type="button" onClick={handleSearchClick}>
                 Search
             </button>
+            <Sort handleSortByChange={handleSortByChange} handleSortOrderChange={handleSortOrderChange} />
             <br />
             {error && <p className="error-message"> {error}</p>}
             {showResults && <div className="search-results"> <SearchResults locations={locations} /> </div>}

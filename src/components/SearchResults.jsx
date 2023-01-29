@@ -1,7 +1,6 @@
 import React from "react"
 
 const SearchResults = ({ locations }) => {
-
     return (
         locations.map((location, index) => {
             const distance = Math.round(location.distance * 10) / 10;
