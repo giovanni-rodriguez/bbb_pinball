@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+Pinball Location Search App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a React-based web application that allows users to search for pinball locations near a specified latitude and longitude. The app uses a REST API to retrieve location data and presents the results to the user in a sorttable table
 
-## Available Scripts
+Features: 
+    - Search for pinball locations near a specified latitude and longitude
+    - Get current location using the "Nea Me" button
+    - Specify a maxmimum distance from the search location
+    - Sort results by Name, Distance and Number of machines
+    - Caching of search results for fast repeat searchs
+    - Error handling for invalid search parameters and API errors
 
-In the project directory, you can run:
+Requirements: 
+    - Node.js
+    - npm
 
-### `npm start`
+Setup: 
+    - Clone the repository
+    - Change into project directory
+    - Install the dependencies: "npm install"
+    - Start the development server: "npm run dev"
+    - Open a web broswer and navigate to "http://localhost:3000"
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Usage
+    - Enter a latitude and longitude into the form fields or use the "Near Me" button to get your current location.
+    - Specify a maximum distance for the search(default is 50 miles).
+    - Click the "Search" button to retrieve the results/
+    - Sort the results by clicking on a column header(default is distance)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Running test: 
+The test for the application can be run by using : npm run test
 
-### `npm test`
+The test check for the following components: 
+    - App: tests if the app renders without crashing and displays the LocationSearch component
+    - LocationSearch: tests if the form displays with correct labels for inputs, renders NearMeButton component and search button, displays the appropriate error message, displays SearchResults component when valid coordinates are provided and there are nearby locations and search button makes appropriate API call
+    - NearMeButton: tests updates latitude and longitude inputs with users current location, calls the handleGeoLocationError function when there is an error getting the current location
+    
+Code Overview: 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The main component of the application is the LocationSearch component. This component manages state for the form inputs, the search results and any error messages. It also makes the API call to retrieve the pinball locations.
 
-### `npm run build`
+The LocationSearchForm utilizes helper functions including coordinateValidation and sortLocations.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The application also includes smaller components such as NearMeButton, SearchResults, MaxDistance and Sort. These components are used to render the form inputs, search results, maximum distance selector and sort options respectively.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Built With: 
+React
+Jest
+@testing-library/react
+Express

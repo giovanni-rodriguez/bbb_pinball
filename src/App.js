@@ -1,6 +1,6 @@
 import React from "react";
 import './App.css';
-import LocationSearchForm from './components/LocationSearchForm.jsx';
+import LocationSearchForm from './components/LocationSearch.jsx';
 
 const App = () => {
   return (
