@@ -15,7 +15,7 @@ test("renders form with a label for latitude and longitude inputs", () => {
 
 test("renders NearMeButton component", () => {
     render(<LocationSearchForm />);
-    const nearMeButton = screen.getByText("Near Me");
+    const nearMeButton = screen.getByText("Near me");
     expect(nearMeButton).toBeInTheDocument();
 });
 
@@ -79,6 +79,11 @@ test("Search button makes appropriate API call", () => {
     fireEvent.click(searchButton);
 
     expect(fakeFetch).toHaveBeenCalledWith("http://localhost:8080/api/locations?lat=40.7031743&lon=1&send_all_within_distance=true&max_distance=10",
-        { "headers": { "Content-Type": "application/json" }, "method": "GET" });
+        {
+            "headers": {
+                "Content-type": "application/json"
+            },
+            "method": "GET"
+        });
 })
 

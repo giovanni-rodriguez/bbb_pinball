@@ -1,7 +1,8 @@
+import React from "react";
 import './App.css';
 import LocationSearchForm from './components/LocationSearchForm.jsx';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <h1> Pinball Finder</h1>
