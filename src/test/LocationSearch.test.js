@@ -1,6 +1,6 @@
 import React from "react";
 import { fireEvent, getByText, render, screen, waitFor } from "@testing-library/react";
-import LocationSearchForm from "../components/LocationSearchForm";
+import LocationSearchForm from "../components/LocationSearch";
 
 
 
