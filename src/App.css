@@ -104,6 +104,8 @@ button:hover {
 .search-results {
   overflow-y: scroll;
   max-height: 65vh;
+  margin-top: 2rem;
+  padding-bottom: 7rem;
 }
 
 .max-distance-label {
@@ -123,4 +125,32 @@ button:hover {
 
 .error-message {
   color: red;
+}
+
+.sort-by-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.sort-by-select {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-left: 1rem;
+}
+
+.sort-order-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.sort-order-select {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-left: 1rem;
 }
