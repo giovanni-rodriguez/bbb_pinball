@@ -19,7 +19,7 @@ This is a React-based web application that allows users to search for pinball lo
     2. Change into project directory
     3. Install the dependencies: "npm install"
     4. Start the development server: "npm run dev"
-    5. Open a web broswer and navigate to "http://localhost:3000"
+    5. Open a web browser and navigate to "http://localhost:3000"
 
 ## Usage
     * Enter a latitude and longitude into the form fields or use the "Near Me" button to get your current location.
