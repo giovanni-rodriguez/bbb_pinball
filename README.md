@@ -4,7 +4,7 @@ This is a React-based web application that allows users to search for pinball lo
 
 ## Features: 
     * Search for pinball locations near a specified latitude and longitude
-    * Get current location using the "Nea Me" button
+    * Get current location using the "Near Me" button
     * Specify a maxmimum distance from the search location
     * Sort results by Name, Distance and Number of machines
     * Caching of search results for fast repeat searchs
