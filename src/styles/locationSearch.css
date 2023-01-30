@@ -1,0 +1,24 @@
+button {
+    margin: 10px 5px;
+    padding: 10px 10px;
+    border: 2px solid #4CAF50;
+    border-radius: 20px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+
+button:hover {
+    background-color: #3E8E41;
+    cursor: pointer;
+}
+
+.latitude-input {
+    margin-left: 1.93rem;
+}
+
+.longitude-input {
+    margin-left: 1.1rem;
+}

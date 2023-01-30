@@ -1,8 +1,8 @@
 import React from "react"
+import "../styles/searchResults.css";
 
 const SearchResults = ({ locations }) => {
     return (
-
         <ul aria-label="Search Results">
             {locations.map((location, index) => {
                 const distance = Math.round(location.distance * 10) / 10;
