@@ -110,36 +110,38 @@ const LocationSearch = () => {
 
     return (
         <form className="form">
-            <label className="latitude-label">
+            <label id="latitude-label" className="latitude-label" htmlFor="latitude-input">
                 Latitude:
                 <input
                     className="latitude-input"
                     type="text"
                     value={latitude}
                     placeholder={"Enter latitude"}
-                    onChange={handleLatitudeChange} />
+                    onChange={handleLatitudeChange}
+                    aria-labelledby="latitude-label" />
             </label>
             <br />
-            <label className="longitude-label">
+            <label id="longitude-label" className="longitude-label" htmlFor="longitude-label">
                 Longitude:
                 <input
                     className="longitude-input"
                     type="text"
                     value={longitude}
                     placeholder={"Enter longitude"}
+                    aria-labelledby="longitude-label"
                     onChange={handleLongitudeChange} />
             </label>
             <br />
-            <NearMeButton handleGeoLocationError={handleGeoLocationError} handleLatitudeChange={handleLatitudeChange} handleLongitudeChange={handleLongitudeChange} />
+            <NearMeButton handleGeoLocationError={handleGeoLocationError} handleLatitudeChange={handleLatitudeChange} handleLongitudeChange={handleLongitudeChange} aria-label="Use current location" />
             <br />
-            <MaxDistance handleMaxDistanceChange={handleMaxDistanceChange} />
-            <button className="search-button" type="button" onClick={handleSearchClick}>
+            <MaxDistance handleMaxDistanceChange={handleMaxDistanceChange} aria-label="Set max distance" />
+            <button className="search-button" type="button" onClick={handleSearchClick} aria-label="Search">
                 Search
             </button>
             <br />
-            <Sort handleSortByChange={handleSortByChange} handleSortOrderChange={handleSortOrderChange} />
+            <Sort handleSortByChange={handleSortByChange} handleSortOrderChange={handleSortOrderChange} aria-label="Sort options" />
             <br />
-            {error && <p className="error-message"> {error}</p>}
+            {error && <p className="error-message" role="alert"> {error}</p>}
             {showResults && <div className="search-results"> <SearchResults locations={locations} /> </div>}
         </form>
     )

@@ -8,9 +8,9 @@ const MaxDistance = ({ handleMaxDistanceChange }) => {
         handleMaxDistanceChange(e.target.value);
     }
     return (
-        <label className="max-distance-label">Maximum Distance(miles):
-            <input className="max-distance-input" type="text" value={maxDistance} placeholder={"Enter maximum distance"} onChange={handleDistanceChange} /></label>
+        <label className="max-distance-label" htmlFor="max-distance">Maximum Distance(miles):
+            <input id="max-distance" className="max-distance-input" title="Enter Maximum Distance(in miles)" aria-label="Enter Maximum Distance(in miles)" type="text" value={maxDistance} placeholder={"Enter maximum distance"} onChange={handleDistanceChange} /></label>
     )
 }
 
-export default MaxDistance
+export default MaxDistance;
