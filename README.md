@@ -34,6 +34,8 @@ The test for the application can be run by using : npm run test
     * App: tests if the app renders without crashing and displays the LocationSearch component
     * LocationSearch: tests if the form displays with correct labels for inputs, renders NearMeButton component and search button, displays the appropriate error message, displays SearchResults component when valid coordinates are provided and there are nearby locations and search button makes appropriate API call
     * NearMeButton: tests updates latitude and longitude inputs with users current location, calls the handleGeoLocationError function when there is an error getting the current location
+    * Sort: tests if component is correctly rendering the select elements, and if the right event handlers are called when the values of the select elements change
+    * sortLocations: tests if the locations are sorted correctly based on values passed to function 
     
 ## Code Overview: 
 
