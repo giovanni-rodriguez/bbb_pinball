@@ -5,6 +5,7 @@ import MaxDistance from "./MaxDistance";
 import Sort from "./Sort";
 import coordinateValidation from "../utils/validation.js";
 import sortLocations from "../utils/sorting";
+import makeAPIRequest from "../utils/makeAPIRequest";
 
 const cache = {};
 
@@ -35,7 +36,7 @@ const LocationSearch = () => {
         setError("Please enable location services in your browser or device settings to allow for accurate geolocation.")
     }
 
-    const handleSearchClick = () => {
+    const handleSearchClick = async () => {
         setLocations([]);
         const validCoordinates = coordinateValidation(latitude, longitude);
         const validMaxDistance = maxDistance <= 1000 && maxDistance >= 1;
@@ -47,32 +48,19 @@ const LocationSearch = () => {
                 setShowResults(true);
             }
             else {
-                const url = `http://localhost:8080/api/locations?lat=${latitude}&lon=${longitude}&send_all_within_distance=${"true"}&max_distance=${maxDistance}`;
-                const requestionOptions = {
-                    method: "GET",
-                    headers: {
-                        "Content-type": "application/json",
-                    }
-                };
-                fetch(url, requestionOptions)
-                    .then((res) => res.json())
-                    .then((data) => {
-                        if (data["errors"]) {
-                            setError(`No locations within ${maxDistance} miles.`);
-                            setLocations([]);
-                            setShowResults(false);
-                        } else {
-                            cache[cacheKey] = data["locations"];
-                            const sortedLocations = sortLocations(data["locations"], sortBy, sortOrder);
-                            setLocations(sortedLocations);
-                            setShowResults(true);
-                        }
-                    })
-                    .catch((err) => {
-                        console.log(err)
-                        console.log("error getting pinball locations from api")
-                        setError("Sorry, there was a problem retrieving data. Please try again later.")
-                    })
+                const response = await makeAPIRequest(latitude, longitude, maxDistance);
+                if (response === "No Locations") {
+                    setError(`No locations within ${maxDistance} miles.`);
+                    setLocations([]);
+                    setShowResults(false);
+                } else if (Array.isArray(response)) {
+                    cache[cacheKey] = response;
+                    const sortedLocations = sortLocations(response, sortBy, sortOrder);
+                    setLocations(sortedLocations);
+                    setShowResults(true);
+                } else if (response === "Error") {
+                    setError("Sorry, there was a problem retrieving data. Please try again later.")
+                }
             }
         }
         else {
@@ -121,7 +109,7 @@ const LocationSearch = () => {
                     aria-labelledby="latitude-label" />
             </label>
             <br />
-            <label id="longitude-label" className="longitude-label" htmlFor="longitude-label">
+            <label id="longitude-label" className="longitude-label" htmlFor="longitude-input">
                 Longitude:
                 <input
                     className="longitude-input"
