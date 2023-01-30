@@ -1,0 +1,152 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f9f9f9;
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: center;
+  overflow-y: hidden;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+  text-align: left;
+}
+
+h1 {
+  align-self: center;
+}
+
+button {
+  margin: 10px 5px;
+  padding: 10px 10px;
+  border: 2px solid #4CAF50;
+  border-radius: 20px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+
+}
+
+
+button:hover {
+  background-color: #3E8E41;
+  cursor: pointer;
+}
+
+.latitude-input {
+  margin-left: 23px;
+}
+
+.longitude-input {
+  margin-left: 10px;
+}
+
+
+.location {
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  height: 300px;
+  overflow: hidden;
+}
+
+.location-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.location-address,
+.location-phone {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+
+.machine-name-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: .2rem;
+  margin-bottom: 0.5rem;
+}
+
+.machine-name {
+  font-size: 15px;
+  margin-left: 1rem;
+  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  max-height: 75px;
+
+}
+
+.machine-name p {
+  margin-bottom: 0.2rem;
+}
+
+.search-results {
+  overflow-y: scroll;
+  max-height: 65vh;
+  margin-top: 2rem;
+  padding-bottom: 7rem;
+}
+
+.max-distance-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.max-distance-input {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-left: 1rem;
+}
+
+.error-message {
+  color: red;
+}
+
+.sort-by-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.sort-by-select {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-left: 1rem;
+}
+
+.sort-order-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.sort-order-select {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-left: 1rem;
+}
