@@ -44,6 +44,7 @@ The test for the application can be run by using : npm run test
     * The application also includes smaller components such as NearMeButton, SearchResults, MaxDistance and Sort. These components are used to render the form inputs, search results, maximum distance selector and sort options respectively.
 
 ## Built With: 
+    * Javascript
     * React
     * Jest
     * @testing-library/react
