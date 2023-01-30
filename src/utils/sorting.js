@@ -51,7 +51,7 @@ const merge = (left, right, sortBy, sortOrder) => {
                     j++
                 }
             } else {
-                if (left[i].num_machines > right[j.num_machines]) {
+                if (left[i].num_machines > right[j].num_machines) {
                     result.push(left[i]);
                     i++
                 } else {
