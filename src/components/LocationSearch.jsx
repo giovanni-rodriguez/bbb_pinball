@@ -6,6 +6,7 @@ import Sort from "./Sort";
 import coordinateValidation from "../utils/validation.js";
 import sortLocations from "../utils/sorting";
 import makeAPIRequest from "../utils/makeAPIRequest";
+import "../styles/locationSearch.css";
 
 const cache = {};
 

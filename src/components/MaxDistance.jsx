@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../styles/maxDistance.css"
 
 const MaxDistance = ({ handleMaxDistanceChange }) => {
     const [maxDistance, setMaxDistance] = useState("50");
