@@ -9,15 +9,15 @@ import sortLocations from "../utils/sorting";
 const cache = {};
 
 
-const LocationSearchForm = () => {
+const LocationSearch = () => {
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("")
     const [locations, setLocations] = useState([]);
-    const [showResults, setShowResults] = useState(false);
-    const [error, setError] = useState("");
     const [maxDistance, setMaxDistance] = useState("50");
     const [sortBy, setSortBy] = useState("Distance");
     const [sortOrder, setSortOrder] = useState("Ascending");
+    const [showResults, setShowResults] = useState(false);
+    const [error, setError] = useState("");
 
     useEffect(() => {
         setShowResults(false);
@@ -88,7 +88,6 @@ const LocationSearchForm = () => {
     const handleMaxDistanceChange = (distance) => {
         setError("")
         setMaxDistance(distance);
-        return;
     }
 
     const handleSortByChange = (e) => {
@@ -146,4 +145,4 @@ const LocationSearchForm = () => {
     )
 }
 
-export default LocationSearchForm;
+export default LocationSearch;

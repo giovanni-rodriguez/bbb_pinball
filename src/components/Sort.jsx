@@ -4,7 +4,7 @@ const Sort = ({ handleSortByChange, handleSortOrderChange }) => {
     return (
         <><label className="sort-by-label">
             Sort by:
-            <select class="sort-by-select" onChange={handleSortByChange}>
+            <select className="sort-by-select" onChange={handleSortByChange}>
                 <option value="Distance">Distance</option>
                 <option value="Name">Name</option>
                 <option value="Number of machines">Number of machines</option>

@@ -20,10 +20,6 @@ body {
   text-align: left;
 }
 
-root {
-  overflow: hidden;
-}
-
 h1 {
   align-self: center;
 }
