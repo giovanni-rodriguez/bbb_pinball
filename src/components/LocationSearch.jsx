@@ -109,7 +109,7 @@ const LocationSearch = () => {
                     onChange={handleLatitudeChange}
                     aria-labelledby="latitude-label" />
             </label>
-            <br />
+            {/* <br /> */}
             <label id="longitude-label" className="longitude-label" htmlFor="longitude-input">
                 Longitude:
                 <input
@@ -120,7 +120,7 @@ const LocationSearch = () => {
                     aria-labelledby="longitude-label"
                     onChange={handleLongitudeChange} />
             </label>
-            <br />
+            {/* <br /> */}
             <NearMeButton handleGeoLocationError={handleGeoLocationError} handleLatitudeChange={handleLatitudeChange} handleLongitudeChange={handleLongitudeChange} aria-label="Use current location" />
             <br />
             <MaxDistance handleMaxDistanceChange={handleMaxDistanceChange} aria-label="Set max distance" />
