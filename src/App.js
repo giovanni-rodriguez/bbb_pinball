@@ -1,13 +1,13 @@
 import React from "react";
 import './App.css';
-import LocationSearchForm from './components/LocationSearch.jsx';
+import LocationSearch from './components/LocationSearch.jsx';
 
 const App = () => {
   return (
     <div className="App">
       <h1> Pinball Finder</h1>
       <div className="form-container">
-        <LocationSearchForm />
+        <LocationSearch />
         <br />
       </div>
     </div>
