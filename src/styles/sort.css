@@ -1,11 +1,8 @@
 .sort-by-label {
-    /* font-size: 1.2rem; */
-    /* font-weight: bold; */
     margin-right: 1rem;
 }
 
 .sort-by-select {
-    /* font-size: 1.2rem; */
     padding: 0.35rem;
     border-radius: 8px;
     border: 1px solid #ccc;
@@ -13,13 +10,10 @@
 }
 
 .sort-order-label {
-    /* font-size: 1.2rem;
-    font-weight: bold; */
     margin-right: 1rem;
 }
 
 .sort-order-select {
-    /* font-size: 1.2rem; */
     padding: 0.35rem;
     border-radius: 8px;
     border: 1px solid #ccc;
